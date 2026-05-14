@@ -2,53 +2,53 @@ const form = document.getElementById('contact-form');
 const response = document.getElementById('form-response');
 
 if (form) {
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    clearValidation();
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        clearValidation();
 
-    if (!validateForm()) return;
+        if (!validateForm()) return;
 
-    const data = new FormData(form);
-    const submitBtn = form.querySelector('button[type="submit"]');
-    submitBtn.disabled = true;
+        const data = new FormData(form);
+        const submitBtn = form.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
 
-    try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' }
-      });
+        try {
+            const res = await fetch(form.action, {
+                method: 'POST',
+                body: data,
+                headers: {Accept: 'application/json'}
+            });
 
-      if (res.ok) {
-        response.innerHTML = successAlert("Your message has been sent successfully. I'll get back to you soon!");
-        form.reset();
-      } else {
-        response.innerHTML = errorAlert('Something went wrong. Please try again or contact me via email.');
-      }
-    } catch (error) {
-      response.innerHTML = errorAlert('Network error. Please try again in a moment.');
-    }
+            if (res.ok) {
+                response.innerHTML = successAlert("Your message has been sent successfully. I'll get back to you soon!");
+                form.reset();
+            } else {
+                response.innerHTML = errorAlert('Something went wrong. Please try again or contact me via email.');
+            }
+        } catch (error) {
+            response.innerHTML = errorAlert('Network error. Please try again in a moment.');
+        }
 
-    removeAlert();
-    submitBtn.disabled = false;
-  });
+        removeAlert();
+        submitBtn.disabled = false;
+    });
 }
 
 function validateForm() {
   let valid = true;
 
-  ['name', 'email', 'message'].forEach((id) => {
-    const input = document.getElementById(id);
-    if (!input.value.trim()) {
-      input.classList.add('is-invalid');
-      valid = false;
-    } else if (id === 'email' && !/^\S+@\S+\.\S+$/.test(input.value)) {
-      input.classList.add('is-invalid');
-      valid = false;
-    } else {
-      input.classList.remove('is-invalid');
-    }
-  });
+    ['name', 'email', 'message'].forEach((id) => {
+        const input = document.getElementById(id);
+        if (!input.value.trim()) {
+            input.classList.add('is-invalid');
+            valid = false;
+        } else if (id === 'email' && !/^\S+@\S+\.\S+$/.test(input.value)) {
+            input.classList.add('is-invalid');
+            valid = false;
+        } else {
+            input.classList.remove('is-invalid');
+        }
+    });
 
   return valid;
 }
@@ -73,8 +73,11 @@ function errorAlert(message) {
     </div>`;
 }
 
+let alertTimeout;
+
 function removeAlert(time = 6000) {
-  setTimeout(() => {
-    response.innerHTML = '';
-  }, time);
+    clearTimeout(alertTimeout);
+    alertTimeout = setTimeout(() => {
+        response.innerHTML = '';
+    }, time);
 }
