@@ -26,6 +26,14 @@ body {
     height: 34px;
 }
 
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    backdrop-filter: blur(4px);
+}
+
 .glass {
     background: rgba(15, 23, 42, 0.78);
     backdrop-filter: blur(10px);
@@ -42,6 +50,11 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-size: 0.9rem;
+}
+
+
+section[id] {
+    scroll-margin-top: 7rem;
 }
 
 .section-block {
