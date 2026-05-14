@@ -1,35 +1,43 @@
 const form = document.getElementById('contact-form');
 const response = document.getElementById('form-response');
 
-form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    clearValidation();
+if (form) {
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        clearValidation();
 
-    if (!validateForm()) return;
+        if (!validateForm()) return;
 
-    const data = new FormData(form);
-    const submitBtn = form.querySelector('button[type="submit"]');
-    submitBtn.disabled = true;
+        const data = new FormData(form);
+        const submitBtn = form.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
 
-    const res = await fetch(form.action, {
-        method: 'POST', body: data, headers: {'Accept': 'application/json'}
+        try {
+            const res = await fetch(form.action, {
+                method: 'POST',
+                body: data,
+                headers: {Accept: 'application/json'}
+            });
+
+            if (res.ok) {
+                response.innerHTML = successAlert("Your message has been sent successfully. I'll get back to you soon!");
+                form.reset();
+            } else {
+                response.innerHTML = errorAlert('Something went wrong. Please try again or contact me via email.');
+            }
+        } catch (error) {
+            response.innerHTML = errorAlert('Network error. Please try again in a moment.');
+        }
+
+        removeAlert();
+        submitBtn.disabled = false;
     });
-
-    if (res.ok) {
-        response.innerHTML = successAlert(`Your message has been sent successfully. I'll get back to you soon!`);
-        form.reset();
-    } else {
-        response.innerHTML = errorAlert('Something went wrong. Please try again or contact me via email.');
-    }
-
-    removeAlert();
-    submitBtn.disabled = false;
-});
+}
 
 function validateForm() {
     let valid = true;
 
-    ['name', 'email', 'message'].forEach(id => {
+    ['name', 'email', 'message'].forEach((id) => {
         const input = document.getElementById(id);
         if (!input.value.trim()) {
             input.classList.add('is-invalid');
@@ -46,27 +54,30 @@ function validateForm() {
 }
 
 function clearValidation() {
-    form.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+    form.querySelectorAll('.is-invalid').forEach((el) => el.classList.remove('is-invalid'));
 }
 
 function successAlert(message) {
     return `
     <div class="alert alert-success d-flex align-items-center" role="alert">
-        <i class="fa-solid fa-circle-check me-2"></i>
-        <div>${message}</div>
+      <i class="fa-solid fa-circle-check me-2"></i>
+      <div>${message}</div>
     </div>`;
 }
 
 function errorAlert(message) {
     return `
     <div class="alert alert-danger d-flex align-items-center" role="alert">
-        <i class="fa-solid fa-triangle-exclamation me-2"></i>
-        <div>${message}</div>
+      <i class="fa-solid fa-triangle-exclamation me-2"></i>
+      <div>${message}</div>
     </div>`;
 }
 
+let alertTimeout;
+
 function removeAlert(time = 6000) {
-    setTimeout(() => {
+    clearTimeout(alertTimeout);
+    alertTimeout = setTimeout(() => {
         response.innerHTML = '';
     }, time);
 }
