@@ -81,8 +81,8 @@
                     refine with real user feedback.
                 </p>
                 <p class="text-secondary mb-0">
-                    My stack usually includes JavaScript/TypeScript, Python, REST APIs, SQL databases, and cloud
-                    deployment.
+                    My usual stack is PHP, JavaScript, APIs, and MySQL, and I'm actively expanding it with newer
+                    technologies while building Healing Hands.
                 </p>
             </div>
             <div class="col-lg-4">
@@ -99,33 +99,35 @@
     </section>
 
     <section id="projects" class="section-block">
-        <h2 class="section-title">Selected Projects</h2>
-        <div class="row g-4">
-            <div class="col-md-6 col-xl-4">
-                <article class="project-card p-4 h-100">
-                    <h3 class="h5">Ops Dashboard</h3>
-                    <p class="text-secondary">Centralized operations dashboard integrating CRM, analytics, and team
-                        workflows.</p>
-                    <span class="badge rounded-pill text-bg-primary-subtle text-primary-emphasis">React • Node • PostgreSQL</span>
-                </article>
+        <h2 class="section-title">Project Built</h2>
+        <p class="text-secondary mb-4">My current portfolio project is <strong>Healing Hands</strong>, a
+            production-focused education portal.</p>
+        <article class="project-card p-4 p-lg-5">
+            <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-3">
+                <h3 class="h4 mb-0">Healing Hands</h3>
+                <span class="badge rounded-pill text-bg-primary-subtle text-primary-emphasis">Education Portal</span>
             </div>
-            <div class="col-md-6 col-xl-4">
-                <article class="project-card p-4 h-100">
-                    <h3 class="h5">Micro-SaaS Billing Portal</h3>
-                    <p class="text-secondary">Subscription management and customer self-service portal with secure
-                        auth.</p>
-                    <span class="badge rounded-pill text-bg-primary-subtle text-primary-emphasis">Next.js • Stripe • Auth</span>
-                </article>
-            </div>
-            <div class="col-md-6 col-xl-4">
-                <article class="project-card p-4 h-100">
-                    <h3 class="h5">Automation Pipeline</h3>
-                    <p class="text-secondary">Automated lead intake and follow-up flows that reduced manual admin by
-                        70%.</p>
-                    <span class="badge rounded-pill text-bg-primary-subtle text-primary-emphasis">Python • APIs • No-code</span>
-                </article>
-            </div>
-        </div>
+            <p class="text-secondary mb-4">
+                Healing Hands is a SvelteKit-based portal for a natural therapy academy with two main roles: students
+                and admins.
+                Students can manage profiles, view enrolled courses, access content, and use a ticket-based support
+                chat.
+                Admins can manage users, courses, applications, enrolments, and support operations.
+            </p>
+            <h4 class="h6 text-uppercase text-info-emphasis mb-2">Platform Features</h4>
+            <ul class="mb-4">
+                <li>Role-based authentication for student and admin access.</li>
+                <li>Course and enrolment management flows with secure server actions.</li>
+                <li>Support ticket overviews (student + admin), ticket detail chat, and attachment history.</li>
+            </ul>
+            <h4 class="h6 text-uppercase text-info-emphasis mb-2">Tech Stack</h4>
+            <p class="mb-0 text-secondary">
+                SvelteKit, Svelte 5 runes, TypeScript, Tailwind CSS v4, DaisyUI, Lucide Svelte, PostgreSQL (Neon),
+                Drizzle ORM + Drizzle Kit, Better Auth, Resend, pnpm, deployed on Vercel.
+                Architecture preference: relational data in Postgres with file metadata in DB and cloud storage for
+                uploads.
+            </p>
+        </article>
     </section>
 
     <section id="services" class="section-block">
