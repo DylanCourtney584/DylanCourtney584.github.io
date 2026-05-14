@@ -35,7 +35,7 @@ if (form) {
 }
 
 function validateForm() {
-    let valid = true;
+  let valid = true;
 
     ['name', 'email', 'message'].forEach((id) => {
         const input = document.getElementById(id);
@@ -50,15 +50,15 @@ function validateForm() {
         }
     });
 
-    return valid;
+  return valid;
 }
 
 function clearValidation() {
-    form.querySelectorAll('.is-invalid').forEach((el) => el.classList.remove('is-invalid'));
+  form.querySelectorAll('.is-invalid').forEach((el) => el.classList.remove('is-invalid'));
 }
 
 function successAlert(message) {
-    return `
+  return `
     <div class="alert alert-success d-flex align-items-center" role="alert">
       <i class="fa-solid fa-circle-check me-2"></i>
       <div>${message}</div>
@@ -66,7 +66,7 @@ function successAlert(message) {
 }
 
 function errorAlert(message) {
-    return `
+  return `
     <div class="alert alert-danger d-flex align-items-center" role="alert">
       <i class="fa-solid fa-triangle-exclamation me-2"></i>
       <div>${message}</div>
